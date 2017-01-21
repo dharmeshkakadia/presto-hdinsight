@@ -16,8 +16,8 @@ rm presto-server-*/plugin/hive-hadoop2/hadoop-apache2-*.jar
 cp presto-hadoop-apache2-master/target/hadoop-apache2-0.11-SNAPSHOT.jar presto-server-*/plugin/hive-hadoop2/
 
 cp /usr/hdp/current/hadoop-client/hadoop-azure-*.jar  presto-server-*/plugin/hive-hadoop2/
-cp /usr/hdp/current/hadoop-yarn-client/lib/jetty-util-*.hwx.jar  presto-server-*/plugin/hive-hadoop2/
-cp /usr/hdp/current/hadoop-yarn-client/lib/azure-storage-*.jar presto-server-*/plugin/hive-hadoop2/
+cp /usr/hdp/current/hadoop-client/lib/jetty-util-*.hwx.jar  presto-server-*/plugin/hive-hadoop2/
+cp /usr/hdp/current/hadoop-client/lib/azure-storage-*.jar presto-server-*/plugin/hive-hadoop2/
 
 tar czf presto-server-0.163.tar.gz presto-server-*/
 rm presto-yarn-package/package/files/presto-server*.tar.gz
