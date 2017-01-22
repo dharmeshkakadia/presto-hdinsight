@@ -21,9 +21,8 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
 fi
 
 if [[ `hostname -f` == `get_primary_headnode` || `hostname -f` == `get_secondary_headnode` ]]; then
-  cd /var/lib/presto
-  wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.163/presto-cli-0.163-executable.jar -O presto-cli
-  chmod +x presto-cli
+  wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.163/presto-cli-0.163-executable.jar -O /usr/local/bin/presto-cli
+  chmod +x /usr/local/bin/presto-cli
 
   until slider registry  --name presto1 --getexp presto ; do
     echo "waiting for presto to start.."
@@ -32,7 +31,7 @@ if [[ `hostname -f` == `get_primary_headnode` || `hostname -f` == `get_secondary
 
   cat > /usr/local/bin/presto <<EOF
 #!/bin/bash
-/var/lib/presto/presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*") --catalog hive "\$@"
+presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*") --catalog hive "\$@"
 EOF
   
   chmod +x /usr/local/bin/presto
