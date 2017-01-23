@@ -7,7 +7,7 @@ Run a cutsom [action script](https://docs.microsoft.com/en-us/azure/hdinsight/hd
 https://raw.githubusercontent.com/dharmeshkakadia/presto-hdinsight/master/installpresto.sh
 ```
 
-Now you can SSH to your cluster and run the following to start running presto queries:
+Now you can SSH to your cluster and run the following to start using presto:
 ```
 presto --schema default
 ```
