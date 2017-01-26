@@ -11,3 +11,13 @@ Now you can SSH to your cluster and run the following to start using presto:
 ```
 presto --schema default
 ```
+
+## FAQ
+### Is this Microsoft supported product? 
+No.
+
+### Does it support Windows Azure Storage Blolb (WASB)?
+Yes.
+
+### Does it support [Azure Data Lake Store (ADLS)](https://azure.microsoft.com/en-us/services/data-lake-store/)?
+Not yet.
