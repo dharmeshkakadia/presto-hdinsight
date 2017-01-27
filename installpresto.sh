@@ -6,6 +6,7 @@ mkdir /var/lib/presto
 chmod -R 777 /var/lib/presto/
 
 if [[ `hostname -f` == `get_primary_headnode` ]]; then
+  apt-get update
   which mvn &> /dev/null || sudo apt-get -y -qq install maven
   cd /var/lib/presto
   wget https://github.com/dharmeshkakadia/presto-hdinsight/archive/master.tar.gz -O presto-hdinsight.tar.gz
