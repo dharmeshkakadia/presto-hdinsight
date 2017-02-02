@@ -19,6 +19,11 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   slider stop presto1 --force
   slider destroy presto1 --force
   slider create presto1 --template appConfig-default.json --resources resources-default.json
+  
+  # tunnel
+  apt install npm
+  npm install -g localtunnel
+  ln -s /usr/bin/nodejs /usr/bin/node
 fi
 
 if [[ `hostname -f` == `get_primary_headnode` || `hostname -f` == `get_secondary_headnode` ]]; then
@@ -38,3 +43,7 @@ EOF
   chmod +x /usr/local/bin/presto
 fi
 
+if [[ `hostname -f` == `get_primary_headnode` ]]; then
+  clustername=$(grep "ClusterDnsName"  /etc/mdsd.d/mdsd.xml| grep -o ">.*<" | sed "s/<//g" | sed "s/>//g")
+  lt --port 9090 --subdomain $clustername --local-host $(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*") &
+fi
