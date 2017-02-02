@@ -12,6 +12,8 @@ Now you can SSH to your cluster and run the following to start using presto:
 presto --schema default
 ```
 
+You can access the presto UI at [https://\<your-cluster-name\>.localtunnel.me/](https://your-cluster-name.localtunnel.me/)
+
 ## FAQ
 ### Is this Microsoft supported product? 
 No.
