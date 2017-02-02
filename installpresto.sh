@@ -45,7 +45,7 @@ fi
 
 if [[ `hostname -f` == `get_primary_headnode` ]]; then
   clustername=$(grep "ClusterDnsName"  /etc/mdsd.d/mdsd.xml| grep -o ">.*<" | sed "s/<//g" | sed "s/>//g")
-  prestohost=$(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*")
+  prestohost=$(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*")
   echo "lt --port 9090 --subdomain $clustername --local-host $prestohost"
   lt --port 9090 --subdomain $clustername --local-host $prestohost &
 fi
