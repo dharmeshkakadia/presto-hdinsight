@@ -48,4 +48,5 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   prestohost=$(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*")
   echo "Running lt --port 9090 --subdomain $clustername --local-host $prestohost"
   nohup lt --port 9090 --subdomain $clustername --local-host $prestohost > /var/lib/presto/tunnel.log 2>&1 &
+  ./installairpal.sh
 fi
