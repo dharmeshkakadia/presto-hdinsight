@@ -11,7 +11,7 @@ Now you can SSH to your cluster and start using presto:
 ```
 presto --schema default
 ```
-This will connect to hive metastore via [hive connector](https://prestodb.io/docs/current/connector/hive.html). On a N worker node cluster, you will have N-2 presto worker nodes and 1 coordinator node. The setup also configures [TPCH connector](https://prestodb.io/docs/current/connector/tpch.html), so you can runn TPCH queries directly.
+This will connect to hive metastore via [hive connector](https://prestodb.io/docs/current/connector/hive.html). On a N worker node cluster, you will have N-2 presto worker nodes and 1 coordinator node. The setup also configures [TPCH connector](https://prestodb.io/docs/current/connector/tpch.html), so you can run TPCH queries directly.
 
 # Airpal
 To optinally install [airpal](https://github.com/airbnb/airpal), 
