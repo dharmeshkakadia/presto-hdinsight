@@ -2,7 +2,7 @@
 
 #Install mysql
 mysqlPassword=presto
-prestoaddress=$(slider registry  --name presto1 --getexp presto | grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*")
+prestoaddress=$1
 echo "detected presto running on $prestoaddress"
 apt-get update
 
