@@ -13,7 +13,26 @@ presto --schema default
 ```
 This will connect to hive metastore via [hive connector](https://prestodb.io/docs/current/connector/hive.html). On a N worker node cluster, you will have N-2 presto worker nodes and 1 coordinator node. The setup also configures [TPCH connector](https://prestodb.io/docs/current/connector/tpch.html), so you can runn TPCH queries directly.
 
-You can access the presto UI at [https://\<your-cluster-name\>.localtunnel.me/](https://your-cluster-name.localtunnel.me/)
+# Airpal
+To optinally install [airpal](https://github.com/airbnb/airpal), 
+
+1. SSH to the cluster and run the following command to know address of the presto server
+    ```
+    sudo slider registry  --name presto1 --getexp presto
+    ```
+    You will see output like following, note the IP:Port.
+    ```
+    {
+      "coordinator_address" : [ {
+        "value" : "10.0.0.11:9090",
+        "level" : "application",
+        "updatedTime" : "Sat Feb 25 05:45:14 UTC 2017"
+      }
+    ```
+
+2. Click [here](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdharmeshkakadia%2Fpresto-hdinsight%2Fmaster%2Fairpal-deploy.json) the below link to add an edge node to the cluster where airpal is going to be installed. Provide Clustername, EdgeNodeSize and PrestoAddress (noted above). 
+
+To access the airpal, go to azure portal, your cluster and navigate to Applications and click on portal. You have to login with cluster login credentials.
 
 ## FAQ
 ### Is this Microsoft supported product? 
