@@ -38,7 +38,7 @@ To access the airpal, go to azure portal, your cluster and navigate to Applicati
 ### Is this Microsoft supported product? 
 No.
 
-### Does it work with Windows Azure Storage Blolb (WASB)?
+### Does it work with Windows Azure Storage Blob (WASB)?
 Yes.
 
 ### Does it work with [Azure Data Lake Store (ADLS)](https://azure.microsoft.com/en-us/services/data-lake-store/)?
