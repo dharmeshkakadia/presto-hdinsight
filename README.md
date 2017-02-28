@@ -43,3 +43,26 @@ Yes.
 
 ### Does it work with [Azure Data Lake Store (ADLS)](https://azure.microsoft.com/en-us/services/data-lake-store/)?
 Not yet.
+
+### How do I customize presto installation?
+If you want to customize presto (change the memory settings, change connectors etc.), 
+
+1. Create a presto cluster without customization following the steps above.
+
+2. SSH to the cluster and specify your customizations. The configuration file is located at ``/var/lib/presto/presto-hdinsight-master/appConfig-default.json`` 
+
+3. Stop and destroy the current running instance of presto.
+    ```
+    sudo slider stop presto1 --force
+    sudo slider destroy presto1 --force
+    ```
+
+4. Start a new instance of presto with the customizations.
+    ```
+    sudo slider create presto1 --template /var/lib/presto/presto-hdinsight-master/appConfig-default.json --resources /var/lib/presto/presto-hdinsight-master/resources-default.json
+    ```
+    
+5. Wait for the new instance to be ready and note presto coordinator address.
+    ```
+    sudo slider registry --name presto1 --getexp presto
+    ```
