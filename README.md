@@ -66,3 +66,7 @@ If you want to customize presto (change the memory settings, change connectors e
     ```
     sudo slider registry --name presto1 --getexp presto
     ```
+
+### How do I run TPCDS on presto?
+    Follow https://github.com/dharmeshkakadia/tpcds-datagen-as-hive-query/blob/master/README.md#how-do-i-run-the-queries-with-presto
+    
