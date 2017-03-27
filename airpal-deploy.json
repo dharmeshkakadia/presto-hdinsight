@@ -53,7 +53,7 @@
             },
             "installScriptActions": [{
                 "name": "[concat('emptynode','-' ,uniquestring(variables('applicationName')))]",
-                "uri": "https://raw.githubusercontent.com/dharmeshkakadia/presto-hdinsight/master/installairpal.sh",
+                "uri": "https://raw.githubusercontent.com/hdinsight/presto-hdinsight/master/installairpal.sh",
                 "parameters":"[parameters('prestoaddress')]",
                 "roles": ["edgenode"]
             }],
