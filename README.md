@@ -68,5 +68,5 @@ If you want to customize presto (change the memory settings, change connectors e
     ```
 
 ### How do I run TPCDS on presto?
-    Follow https://github.com/dharmeshkakadia/tpcds-datagen-as-hive-query/blob/master/README.md#how-do-i-run-the-queries-with-presto
+Follow the instructions on [HDInsight-TPCDS](https://github.com/hdinsight/tpcds-datagen-as-hive-query/blob/master/README.md#how-do-i-run-the-queries-with-presto) repo.
     
