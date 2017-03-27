@@ -9,7 +9,7 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   apt-get update
   which mvn &> /dev/null || apt-get -y -qq install maven
   cd /var/lib/presto
-  wget https://github.com/dharmeshkakadia/presto-hdinsight/archive/master.tar.gz -O presto-hdinsight.tar.gz
+  wget https://github.com/hdinsight/presto-hdinsight/archive/master.tar.gz -O presto-hdinsight.tar.gz
   tar xzf presto-hdinsight.tar.gz
   cd presto-hdinsight-master
   ./createsliderbuild.sh
