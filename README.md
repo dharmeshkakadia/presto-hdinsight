@@ -4,7 +4,7 @@ Run Presto on Azure HDInsight
 # TL;DR 
 Run a cutsom [action script](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux) on existing or new HDInsight _hadoop_ cluster (version 3.5 or above) with following as your bash script URI and run it on "HEAD" and "WORKER":
 ```
-https://raw.githubusercontent.com/dharmeshkakadia/presto-hdinsight/master/installpresto.sh
+https://raw.githubusercontent.com/hdinsight/presto-hdinsight/master/installpresto.sh
 ```
 
 Now you can SSH to your cluster and start using presto:
@@ -30,7 +30,7 @@ To optinally install [airpal](https://github.com/airbnb/airpal),
       }
     ```
 
-2. Click [here](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdharmeshkakadia%2Fpresto-hdinsight%2Fmaster%2Fairpal-deploy.json) the below link to add an edge node to the cluster where airpal is going to be installed. Provide Clustername, EdgeNodeSize and PrestoAddress (noted above). 
+2. Click [here](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2Fpresto-hdinsight%2Fmaster%2Fairpal-deploy.json) the below link to add an edge node to the cluster where airpal is going to be installed. Provide Clustername, EdgeNodeSize and PrestoAddress (noted above). 
 
 To access the airpal, go to azure portal, your cluster and navigate to Applications and click on portal. You have to login with cluster login credentials.
 
