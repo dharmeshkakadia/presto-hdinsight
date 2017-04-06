@@ -38,3 +38,8 @@ EOF
   
   chmod +x /usr/local/bin/presto
 fi
+
+# Test
+if [[ `hostname -f` == `get_primary_headnode` ]]; then
+  ./integration-tests.sh
+fi
