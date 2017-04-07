@@ -1,8 +1,9 @@
 #!/bin/bash
+set -eux
 
 wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
 
-mkdir /var/lib/presto
+mkdir -p /var/lib/presto
 chmod -R 777 /var/lib/presto/
 
 if [[ `hostname -f` == `get_primary_headnode` ]]; then
@@ -13,11 +14,9 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   tar xzf presto-hdinsight.tar.gz
   cd presto-hdinsight-master
   ./createsliderbuild.sh
-  slider package --delete --name presto1
-  slider package --install --name presto1 --package build/presto-yarn-package.zip
+  slider package --install --name presto1 --package build/presto-yarn-package.zip --replacepkg
   ./createconfigs.sh
-  slider stop presto1 --force
-  slider destroy presto1 --force
+  slider exists presto1 --live && slider stop presto1 --force && slider destroy presto1 --force
   slider create presto1 --template appConfig-default.json --resources resources-default.json
 fi
 
@@ -36,4 +35,9 @@ presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep va
 EOF
   
   chmod +x /usr/local/bin/presto
+fi
+
+# Test
+if [[ `hostname -f` == `get_primary_headnode` ]]; then
+  ./integration-tests.sh
 fi

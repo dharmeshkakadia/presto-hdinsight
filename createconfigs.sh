@@ -1,3 +1,6 @@
+#!/bin/bash
+set -eux
+
 nodes=$(wc -l  /etc/hadoop/conf/slaves | awk '{print $1}')
 
 metastore=$(grep -n1 "hive.metastore.uri" /etc/hive/conf/hive-site.xml | grep -o "<value>.*/value>" | sed 's:<value>::g' | sed 's:</value>::g')
