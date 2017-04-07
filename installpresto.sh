@@ -14,8 +14,7 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   tar xzf presto-hdinsight.tar.gz
   cd presto-hdinsight-master
   ./createsliderbuild.sh
-  slider package --delete --name presto1
-  slider package --install --name presto1 --package build/presto-yarn-package.zip
+  slider package --install --name presto1 --package build/presto-yarn-package.zip --replacepkg
   ./createconfigs.sh
   slider stop presto1 --force
   slider destroy presto1 --force
