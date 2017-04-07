@@ -3,7 +3,7 @@ set -eux
 
 hivetest(){
 	result=$(tempfile)
-	presto --schema default --execute "select count(*) from hivesampletable" > result
+	presto --schema default --execute "select count(*) from hivesampletable" > $result
 
 	# There are quotes in the result "59793"
 	if [[ $(cat $result) == "\"59793\"" ]] ; then
