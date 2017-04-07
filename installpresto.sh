@@ -16,8 +16,7 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   ./createsliderbuild.sh
   slider package --install --name presto1 --package build/presto-yarn-package.zip --replacepkg
   ./createconfigs.sh
-  slider stop presto1 --force
-  slider destroy presto1 --force
+  slider exists presto1 --live && slider stop presto1 --force && slider destroy presto1 --force
   slider create presto1 --template appConfig-default.json --resources resources-default.json
 fi
 
