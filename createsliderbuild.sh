@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-VERSION=0.163
+VERSION=$1
 rm -rf build
 mkdir build
 cd build
