@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eux
 
+VERSION=0.172
 wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
 
 mkdir -p /var/lib/presto
@@ -13,15 +14,16 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   wget https://github.com/hdinsight/presto-hdinsight/archive/master.tar.gz -O presto-hdinsight.tar.gz
   tar xzf presto-hdinsight.tar.gz
   cd presto-hdinsight-master
-  ./createsliderbuild.sh
+  ./createsliderbuild.sh $VERSION
   slider package --install --name presto1 --package build/presto-yarn-package.zip --replacepkg
-  ./createconfigs.sh
-  slider exists presto1 --live && slider stop presto1 --force && slider destroy presto1 --force
+  ./createconfigs.sh $VERSION
+  slider exists presto1 --live && slider stop presto1 --force
+  slider exists presto1 && slider destroy presto1 --force
   slider create presto1 --template appConfig-default.json --resources resources-default.json
 fi
 
 if [[ `hostname -f` == `get_primary_headnode` || `hostname -f` == `get_secondary_headnode` ]]; then
-  wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.163/presto-cli-0.163-executable.jar -O /usr/local/bin/presto-cli
+  wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/$VERSION/presto-cli-$VERSION-executable.jar -O /usr/local/bin/presto-cli
   chmod +x /usr/local/bin/presto-cli
 
   until slider registry  --name presto1 --getexp presto ; do
