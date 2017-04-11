@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eux
 
+VERSION=$1
 nodes=$(wc -l  /etc/hadoop/conf/slaves | awk '{print $1}')
 
 metastore=$(grep -n1 "hive.metastore.uri" /etc/hive/conf/hive-site.xml | grep -o "<value>.*/value>" | sed 's:<value>::g' | sed 's:</value>::g')
@@ -14,7 +15,7 @@ cat > appConfig-default.json <<EOF
   "global": {
     "site.global.data_dir": "/var/lib/presto/data",
     "site.global.config_dir": "/var/lib/presto/etc",
-    "site.global.app_name": "presto-server-0.163",
+    "site.global.app_name": "presto-server-$VERSION",
     "site.global.app_pkg_plugin": "\${AGENT_WORK_ROOT}/app/definition/package/plugins/",
     "site.global.singlenode": "false",
     "site.global.coordinator_host": "\${COORDINATOR_HOST}",
