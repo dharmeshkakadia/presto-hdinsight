@@ -2,7 +2,7 @@
 set -eux
 
 VERSION=$1
-nodes=$(wc -l  /etc/hadoop/conf/slaves | awk '{print $1}')
+nodes=$(curl http://headnodehost:8088/ws/v1/cluster/nodes |  grep -o '"nodeHostName":"[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*"'  | wc -l)
 
 metastore=$(grep -n1 "hive.metastore.uri" /etc/hive/conf/hive-site.xml | grep -o "<value>.*/value>" | sed 's:<value>::g' | sed 's:</value>::g')
 memory=$(grep -n1 "yarn.nodemanager.resource.memory-mb" /etc/hadoop/conf/yarn-site.xml | grep -o "<value>.*/value>" | sed 's:<value>::g' | sed 's:</value>::g')
