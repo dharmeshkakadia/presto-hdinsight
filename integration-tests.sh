@@ -1,8 +1,21 @@
 #!/bin/bash
 set -eux
 
+tpchtest(){
+  local result=$(tempfile)
+  presto --execute "select count(*) from tpch.tiny.nation" > $result
+   
+  # There are quotes in the result "25"
+  if [[ $(cat $result) == "\"25\"" ]] ; then
+    echo "TPCH connector test passed"
+  else
+    echo "TPCH connector test failed: expected \"25\" , but got $(cat $result)"
+    exit 1
+  fi
+}
+
 hivetest(){
-  result=$(tempfile)
+  local result=$(tempfile)
   presto --schema default --execute "select count(*) from hivesampletable" > $result
 
   # There are quotes in the result "59793"
@@ -19,4 +32,5 @@ until [[ $(presto --schema default --execute 'select * from system.runtime.nodes
   sleep 5
 done
 
+tpchtest
 hivetest
