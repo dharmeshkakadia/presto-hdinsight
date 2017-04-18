@@ -16,7 +16,8 @@ tpchtest(){
 
 hivetest(){
   local result=$(tempfile)
-  presto --schema default --execute "select count(*) from hivesampletable" > $result
+  hive -e "DROP TABLE IF EXISTS PrestoHiveSampleTable; CREATE TABLE PrestoHiveSampleTable (ClientId string,QueryTime string,Market string,DevicePlatform string,DeviceMake string,DeviceModel string,State string,Country string,QueryDwellTime double,SessionId bigint,SessionPageViewOrder bigint) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'; LOAD DATA LOCAL INPATH '/usr/lib/examples/hive/HiveSampleData.txt' OVERWRITE INTO TABLE PrestoHiveSampleTable;"
+  presto --schema default --execute "select count(*) from PrestoHiveSampleTable" > $result
 
   # There are quotes in the result "59793"
   if [[ $(cat $result) == "\"59793\"" ]] ; then
