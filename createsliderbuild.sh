@@ -22,6 +22,14 @@ cp /usr/hdp/current/hadoop-client/hadoop-azure-*.jar  presto-server-*/plugin/hiv
 cp /usr/hdp/current/hadoop-client/lib/jetty-util-*.hwx.jar  presto-server-*/plugin/hive-hadoop2/
 cp /usr/hdp/current/hadoop-client/lib/azure-storage-*.jar presto-server-*/plugin/hive-hadoop2/
 
+mkdir -p presto-server-$VERSION/plugin/event-logger
+
+wget https://github.com/dharmeshkakadia/presto-event-logger/archive/master.tar.gz -O presto-event-logger.tar.gz
+tar xzf presto-event-logger.tar.gz
+mvn package -f presto-event-logger-master/pom.xml
+cp presto-event-logger-master/target/presto-event-logger*.jar presto-server-*/plugin/event-logger/
+cp /usr/hdp/current/hadoop-client/lib/{microsoft-log4j-etwappender-*.jar,mdsdclient-*.jar,json-simple-*.jar,slf4j-api-*.jar,slf4j-log4j12-*.jar,guava-*.jar,log4j-*.jar} presto-server-*/plugin/event-logger/
+
 tar czf presto-server-$VERSION.tar.gz presto-server-*/
 rm presto-yarn-package/package/files/presto-server*.tar.gz
 cp presto-server-*.tar.gz presto-yarn-package/package/files/
