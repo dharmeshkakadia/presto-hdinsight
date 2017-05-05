@@ -25,6 +25,7 @@ cat > appConfig-default.json <<EOF
     "site.global.catalog": "{'hive': ['connector.name=hive-hadoop2','hive.metastore.uri=$metastore', 'hive.config.resources=/etc/hadoop/conf/hdfs-site.xml,/etc/hadoop/conf/core-site.xml'], 'tpch': ['connector.name=tpch']}",
     "site.global.jvm_args": "['-server', '-Xmx$(($(($memory/1024))-1))G', '-XX:+UseG1GC', '-XX:G1HeapRegionSize=32M', '-XX:+UseGCOverheadLimit', '-XX:+ExplicitGCInvokesConcurrent', '-XX:+HeapDumpOnOutOfMemoryError', '-XX:OnOutOfMemoryError=kill -9 %p']",
     "site.global.log_properties": "['com.facebook.presto=WARN']",
+    "site.global.event_listener_properties": "['event-listener.name=event-logger']",
     "application.def": ".slider/package/presto1/presto-yarn-package.zip",
     "java_home": "/usr/lib/jvm/java"
   },
