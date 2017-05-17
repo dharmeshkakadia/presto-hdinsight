@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-VERSION=0.172
+VERSION=0.174
 wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
 
 mkdir -p /var/lib/presto
