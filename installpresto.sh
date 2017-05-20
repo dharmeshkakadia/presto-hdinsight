@@ -14,9 +14,9 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   wget https://github.com/dharmeshkakadia/presto-hdinsight/archive/master.tar.gz -O presto-hdinsight.tar.gz
   tar xzf presto-hdinsight.tar.gz
   cd presto-hdinsight-master
-  ./createsliderbuild.sh
+  ./createsliderbuild.sh $VERSION
   slider package --install --name presto1 --package build/presto-yarn-package.zip --replacepkg
-  ./createconfigs.sh $VERSION $VERSION "${2:-}"
+  ./createconfigs.sh $VERSION "${2:-}"
   slider exists presto1 --live && slider stop presto1 --force
   slider exists presto1 && slider destroy presto1 --force
   slider create presto1 --template appConfig-default.json --resources resources-default.json
