@@ -13,6 +13,10 @@ presto --schema default
 ```
 This will connect to hive metastore via [hive connector](https://prestodb.io/docs/current/connector/hive.html). On a N worker node cluster, you will have N-2 presto worker nodes and 1 coordinator node. The setup also configures [TPCH connector](https://prestodb.io/docs/current/connector/tpch.html), so you can run TPCH queries directly.
 
+If you want to configure additional connectors, you can pass the catalog configurations as a parameter to the custom action script. The syntax is `‘connector1’ : [‘key1=value1’, ‘key2=value2’..], ‘connector2’ : [‘key1=value1’, ‘key2=value2’..]` as described in [presto-yarn](https://prestodb.io/presto-yarn/installation-yarn-configuration-options.html). So, the following string as a parameter will add sqlserver and DocDB connectors with its configurations (notice the "" around the full string):
+
+> " 'cosmosdb': ['connector.name=mongodb','mongodb.seeds=test.documents.azure.com:10255','mongodb.credentials=testuser:secretpassword@prestocollection','mongodb.ssl.enabled=true'],'sqlserver': ['connector.name=sqlserver','connection-url=jdbc:sqlserver://testsqlserver.database.windows.net:1433;database=testdb;user=testuser@testserver;password=secretpassword;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;', 'connection-user=testuser','connection-password=secretpassword'] "
+
 # Airpal
 To optinally install [airpal](https://github.com/airbnb/airpal), 
 
