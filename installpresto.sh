@@ -2,12 +2,11 @@
 set -eux
 
 VERSION=0.174
-wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
 
 mkdir -p /var/lib/presto
 chmod -R 777 /var/lib/presto/
 
-if [[ `hostname -f` == `get_primary_headnode` ]]; then
+if [[ $(hostname -s) = hn0-* ]]; then 
   apt-get update
   which mvn &> /dev/null || apt-get -y -qq install maven
   cd /var/lib/presto
@@ -22,7 +21,7 @@ if [[ `hostname -f` == `get_primary_headnode` ]]; then
   slider create presto1 --template appConfig-default.json --resources resources-default.json
 fi
 
-if [[ `hostname -f` == `get_primary_headnode` || `hostname -f` == `get_secondary_headnode` ]]; then
+if [[ $(hostname -s) = hn* ]]; then 
   wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/$VERSION/presto-cli-$VERSION-executable.jar -O /usr/local/bin/presto-cli
   chmod +x /usr/local/bin/presto-cli
 
@@ -40,6 +39,6 @@ EOF
 fi
 
 # Test
-if [[ `hostname -f` == `get_primary_headnode` ]]; then
+if [[ $(hostname -s) = hn0-* ]]; then
   ./integration-tests.sh
 fi
