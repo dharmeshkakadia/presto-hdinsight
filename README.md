@@ -2,7 +2,7 @@
 Run Presto on Azure HDInsight
 
 # TL;DR 
-Run a cutsom [action script](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux) on existing or new HDInsight _hadoop_ cluster (version 3.5 or above) with following as your bash script URI and run it on "HEAD" and "WORKER":
+Run a custom [Script Action](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux) on existing or new HDInsight _hadoop_ cluster (version 3.5 or above) with following as your bash script URI and run it on "HEAD" and "WORKER":
 ```
 https://raw.githubusercontent.com/hdinsight/presto-hdinsight/master/installpresto.sh
 ```
@@ -18,9 +18,9 @@ If you want to configure additional connectors, you can pass the catalog configu
 > " 'cosmosdb': ['connector.name=mongodb','mongodb.seeds=test.documents.azure.com:10255','mongodb.credentials=testuser:secretpassword@prestocollection','mongodb.ssl.enabled=true'],'sqlserver': ['connector.name=sqlserver','connection-url=jdbc:sqlserver://testsqlserver.database.windows.net:1433;database=testdb;user=testuser@testserver;password=secretpassword;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;', 'connection-user=testuser','connection-password=secretpassword'] "
 
 # Airpal
-To optinally install [airpal](https://github.com/airbnb/airpal), 
+To optionally install [airpal](https://github.com/airbnb/airpal), 
 
-1. SSH to the cluster and run the following command to know address of the presto server
+1. SSH to the cluster and run the following command to find out the address of the presto server
     ```
     sudo slider registry  --name presto1 --getexp presto
     ```
