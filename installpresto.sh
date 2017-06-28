@@ -1,6 +1,13 @@
 #!/bin/bash
 set -eux
 
+# check if we have atleast 4 nodes
+nodes=$(curl -L http://headnodehost:8088/ws/v1/cluster/nodes |  grep -o '"nodeHostName":"[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*"'  | wc -l)
+if [[ $nodes -lt 4 ]]; then 
+  echo "you need atleast 4 node hadoop cluster to run presto on HDI. Aborting."
+  exit 1
+fi 
+
 VERSION=0.174
 
 mkdir -p /var/lib/presto
