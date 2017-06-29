@@ -20,7 +20,7 @@ if [[ $(hostname -s) = hn0-* ]]; then
   wget https://github.com/dharmeshkakadia/presto-hdinsight/archive/master.tar.gz -O presto-hdinsight.tar.gz
   tar xzf presto-hdinsight.tar.gz
   cd presto-hdinsight-master
-  ./createsliderbuild.sh $VERSION
+  wget https://prestohdi.blob.core.windows.net/build/presto-yarn-package.zip -P build/
   slider package --install --name presto1 --package build/presto-yarn-package.zip --replacepkg
   ./createconfigs.sh $VERSION "${1:-}"
   slider exists presto1 --live && slider stop presto1 --force
