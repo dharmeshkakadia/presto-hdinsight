@@ -20,7 +20,7 @@ cat > appConfig-default.json <<EOF
     "site.global.app_pkg_plugin": "\${AGENT_WORK_ROOT}/app/definition/package/plugins/",
     "site.global.singlenode": "false",
     "site.global.coordinator_host": "\${COORDINATOR_HOST}",
-    "site.global.presto_query_max_memory": "$(($(($(($memory/1706))-1)) * $(($nodes-3))))GB",
+    "site.global.presto_query_max_memory": "$(($(($(($memory/1706))-1)) * $(($nodes-2))))GB",
     "site.global.presto_query_max_memory_per_node": "$(($(($memory/1706))-1))GB",
     "site.global.presto_server_port": "9090",
     "site.global.catalog": "{ $EXTRA_CONNECTORS 'hive': ['connector.name=hive-hadoop2','hive.metastore.uri=$metastore', 'hive.config.resources=/etc/hadoop/conf/hdfs-site.xml,/etc/hadoop/conf/core-site.xml'], 'tpch': ['connector.name=tpch']}",
@@ -57,7 +57,7 @@ cat > resources-default.json <<EOF
     },
     "WORKER": {
       "yarn.role.priority": "2",
-      "yarn.component.instances": "$(($nodes-3))",
+      "yarn.component.instances": "$(($nodes-2))",
       "yarn.component.placement.policy": "1",
       "yarn.memory": "$memory"
     }
