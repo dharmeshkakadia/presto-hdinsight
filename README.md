@@ -43,6 +43,9 @@ To access the airpal, go to azure portal, your cluster and navigate to Applicati
 ### Is this Microsoft supported product? 
 No.
 
+### What cluster types are valid?
+The script supports only hadoop clusters. Other cluster types (Spark, Kafka, Storm, Secure Hadoop etc.) are not supported.
+
 ### My installation failed. Where are the logs?
 You can check the script action logs in your default storage account under <STORAGE_ACCOUNT_NAME>/<DEFAULT_CONTAINER_NAME>/custom-scriptaction-logs/<CLUSTER_NAME>/\<DATE> . For more information checkout the "Access logs from the default storage account " section from [HDInsight documentation](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux).
 
