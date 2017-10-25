@@ -53,19 +53,30 @@ You can check the script action logs in your default storage account under <STOR
 Yes.
 
 ### Does it work with [Azure Data Lake Store (ADLS)](https://azure.microsoft.com/en-us/services/data-lake-store/)?
-Yes. Following are the instrcutions :
+Yes. Following are the instructions if the cluster is already running:
 1. Go to Ambari -> HDFS -> Configs -> Advanced -> Custom core-site. 
-2. Click on "Add Property" to add following proerties to core-site. The details of this configuration can be found [here](https://hadoop.apache.org/docs/current/hadoop-azure-datalake/index.html):
+2. Click on "Add Property" to add following properties to core-site. The details of this configuration can be found [here](https://hadoop.apache.org/docs/current/hadoop-azure-datalake/index.html):
 
+   2a. For HDInsight 3.5:
+ 
         fs.adl.impl=org.apache.hadoop.fs.adl.AdlFileSystem
         fs.AbstractFileSystem.adl.impl=org.apache.hadoop.fs.adl.Adl
         dfs.adls.oauth2.access.token.provider.type=ClientCredential
         dfs.adls.oauth2.refresh.url=https://login.microsoftonline.com/YOUR_AZURE_AD_TENANT_ID/oauth2/token
         dfs.adls.oauth2.client.id=YOUR_AZURE_SERVICE_PRINCIPAL_ID
         dfs.adls.oauth2.credential=YOUR_AZURE_SERVICE_PRINCIPAL_PASSWORD
+        
+   2b. For HDInsight 3.6:
+
+        dfs.adls.oauth2.access.token.provider.type=ClientCredential
+        dfs.adls.oauth2.refresh.url=https://login.microsoftonline.com/YOUR_AZURE_AD_TENANT_ID/oauth2/token
+        dfs.adls.oauth2.client.id=YOUR_AZURE_SERVICE_PRINCIPAL_ID
+        dfs.adls.oauth2.credential=YOUR_AZURE_SERVICE_PRINCIPAL_PASSWORD
 
 3. Restart the required services by going to Ambari -> Actions -> "Restart All Required"
-4. Now run the presto script action from the azure portal.
+4. Now run the presto script action from the Azure portal.
+
+Alternately, if you are creating a cluster from an ARM template, you can add these properties into the core-site section of the ARM template so that no manual steps will be required after cluster creation.
 
 ### How do I customize presto installation?
 If you want to customize presto (change the memory settings, change connectors etc.), 
