@@ -66,8 +66,10 @@ Yes. Following are the instructions if the cluster is already running:
         dfs.adls.oauth2.client.id=YOUR_AZURE_SERVICE_PRINCIPAL_ID
         dfs.adls.oauth2.credential=YOUR_AZURE_SERVICE_PRINCIPAL_PASSWORD
         
-   2b. For HDInsight 3.6:
+   2b. For HDInsight 3.6 add any which don't already exist:
 
+        fs.adl.impl=org.apache.hadoop.fs.adl.HdiAdlFileSystem
+        fs.AbstractFileSystem.adl.impl=org.apache.hadoop.fs.adl.HdiAdl
         dfs.adls.oauth2.access.token.provider.type=ClientCredential
         dfs.adls.oauth2.refresh.url=https://login.microsoftonline.com/YOUR_AZURE_AD_TENANT_ID/oauth2/token
         dfs.adls.oauth2.client.id=YOUR_AZURE_SERVICE_PRINCIPAL_ID
