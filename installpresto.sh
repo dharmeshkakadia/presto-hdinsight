@@ -54,7 +54,7 @@ if [[ $(hostname -s) = hn* ]]; then
 
   cat > /usr/local/bin/presto <<EOF
 #!/bin/bash
-presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*") --catalog hive "\$@"
+presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep value | cut -d '"' -f4) --catalog hive "\$@"
 EOF
   
   chmod +x /usr/local/bin/presto
