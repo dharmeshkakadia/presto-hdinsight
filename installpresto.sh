@@ -9,7 +9,7 @@ if [[ "$ISSUPPORTED" != "True" ]]; then
 fi
 
 # check if we have atleast 4 nodes
-nodes=$(curl -L http://headnodehost:8088/ws/v1/cluster/nodes |  grep -o '"nodeHostName":"[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*"'  | wc -l)
+nodes=$(curl -L http://headnodehost:8088/ws/v1/cluster/nodes |  grep -o '"nodeHostName":'  | wc -l)
 if [[ $nodes -lt 4 ]]; then 
   echo "you need atleast 4 node hadoop cluster to run presto on HDI. Aborting."
   exit 1
@@ -54,7 +54,7 @@ if [[ $(hostname -s) = hn* ]]; then
 
   cat > /usr/local/bin/presto <<EOF
 #!/bin/bash
-presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep value | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*:[0-9]*") --catalog hive "\$@"
+presto-cli --server $(slider registry  --name presto1 --getexp presto |  grep value | cut -d '"' -f4) --catalog hive "\$@"
 EOF
   
   chmod +x /usr/local/bin/presto
