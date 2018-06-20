@@ -21,6 +21,7 @@ cp presto-hadoop-apache2-master/target/hadoop-apache2-0.11-SNAPSHOT.jar presto-s
 cp /usr/hdp/current/hadoop-client/hadoop-azure-*.jar  presto-server-*/plugin/hive-hadoop2/
 cp /usr/hdp/current/hadoop-client/lib/jetty-util-*.hwx.jar  presto-server-*/plugin/hive-hadoop2/
 cp /usr/hdp/current/hadoop-client/lib/azure-storage-*.jar presto-server-*/plugin/hive-hadoop2/
+cp /usr/hdp/current/hadoop-client/lib/hadoop-lzo*.jar presto-server-*/plugin/hive-hadoop2/
 
 mkdir -p presto-server-$VERSION/plugin/event-logger
 
