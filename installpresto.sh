@@ -15,7 +15,7 @@ if [[ $nodes -lt 4 ]]; then
   exit 1
 fi 
 
-VERSION=0.174
+VERSION=0.187
 
 mkdir -p /var/lib/presto
 chmod -R 777 /var/lib/presto/
